@@ -14,14 +14,13 @@ for i in dna:
  
 def RNA (cadena):
     for i in dna:
-        if i==T:
+        if i=="T":
             rna=dna.replace("T","U")
     return rna
    
 
-
 def INVERSO(cadena):
-    adn=[]
+    adn=""
     for i in cadena:
         if i =="A":
             adn.append("T")
@@ -31,12 +30,13 @@ def INVERSO(cadena):
             adn.append("G")
         if i=="G":
             adn.append("C")
-    a=print( "".join(x for x in adn))
-    return a
+    #a=print( "".join(x for x in adn))
+    dna=adn
+    return dna
 
 
 def Transcripicion(cadena):
-    rna=[]
+    rna=""
     for i in cadena:
         if i =="A":
             rna.append("U")
@@ -46,20 +46,24 @@ def Transcripicion(cadena):
             rna.append("G")
         if i=="G":
             rna.append("C")
-    print( "".join(x for x in rna))
+    #print( "".join(x for x in rna))
+    return rna
     
     
 def Proteinas(cadena):
-    rna=RNA(dna)
+    rna=RNA(cadena)
     count=0
-    amino=None
-    print(a)
-    for i in a:
-        print (i)
-        while count<=3:
-            amino=amino+i
-            count=count+1
-            if count==3:
-                None
+    amino=""
+    proteina=""
+    #print(a)
+    for i in rna:
+        amino=amino+i
+        count=count+1
+        if count==3:
+            an=dic_aminos[amino]
+            proteina=proteina+an+", "
+            count=0
+            amino=""
+    return proteina
 
-
+print(Proteinas(dna))
