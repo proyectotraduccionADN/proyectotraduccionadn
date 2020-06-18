@@ -7,7 +7,7 @@ raiz.resizable(0,0)
 raiz.config(bg="mint cream")
 #-------pantalla-------
 pantallauno=Frame(raiz)
-pantallauno.config(bg="gold",width="500",height="300")
+pantallauno.config(bg="gold",width="500",height="400")
 pantallauno.config(bd=20)
 pantallauno.grid(row=3, column=2,pady=5, rowspan=2)
 
