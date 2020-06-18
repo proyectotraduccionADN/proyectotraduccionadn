@@ -8,14 +8,14 @@ dic_aminos={'GGG':'Gly','GGA':'Gly','GGU':'Gly','GGC':'Gly','GAG':'Glu','GAA':'G
 'CGG':'Arg','CGA':'Arg','CGU':'Arg','CGC':'Arg','CAG':'Gln','CAA':'Gln','CAU':'His','CAC':'His','CUG':'Leu','CUA':'Leu','CUU':'Leu','CUC':'Leu','CCG':'Pro','CCA':'Pro','CCU':'Pro','CCC':'Pro'}
 dna=dna.upper()
 for i in dna:
-    if i != "A" and i != "G" and i != "T" and i != "C":
+    if i != "A" and i != "G" and i != "T" and i != "C" and i != "U":
             dna=dna.replace(i,"")
 #print(dna)
  
 def RNA (cadena):
-    for i in dna:
+    for i in cadena:
         if i=="T":
-            rna=dna.replace("T","U")
+            rna=cadena.replace("T","U")
     return rna
    
 
@@ -23,30 +23,28 @@ def INVERSO(cadena):
     adn=""
     for i in cadena:
         if i =="A":
-            adn.append("T")
+            adn=adn+"T"
         if i=="T":
-            adn.append("A")
+            adn=adn+"A"
         if i=="C":
-            adn.append("G")
+            adn=adn+"G"
         if i=="G":
-            adn.append("C")
-    #a=print( "".join(x for x in adn))
+            adn=adn+"C"
     dna=adn
     return dna
 
 
-def Transcripicion(cadena):
+def Transcripcion(cadena):
     rna=""
     for i in cadena:
         if i =="A":
-            rna.append("U")
+            rna=rna+"U"
         if i=="T":
-            rna.append("A")
+            rna=rna+"A"
         if i=="C":
-            rna.append("G")
+            rna=rna+"G"
         if i=="G":
-            rna.append("C")
-    #print( "".join(x for x in rna))
+            rna=rna+"C"
     return rna
     
     
@@ -55,15 +53,21 @@ def Proteinas(cadena):
     count=0
     amino=""
     proteina=""
-    #print(a)
     for i in rna:
         amino=amino+i
         count=count+1
         if count==3:
             an=dic_aminos[amino]
-            proteina=proteina+an+", "
             count=0
             amino=""
+            if an =="STOP":
+                proteina=proteina+an
+                break
+            proteina=proteina+an+", "
     return proteina
 
-print(Proteinas(dna))
+#print(Proteinas(dna),"proteina")
+#print(Transcripcion(dna),"trans")
+#print(RNA(dna),"rna")
+#print(INVERSO(dna),"inverso")
+
