@@ -8,7 +8,7 @@ raiz.config(bg="mint cream")
 
 
 #----Titulo-----
-etiq = Label(raiz, text=" Acido Desoxirribonucleico",bg="beige")
+etiq = Label(raiz, text=" Acido Desoxirribonucleico",bg="beige",font=("Arial Bold", 20))
 etiq.grid(row=0,column=2)
 
 #-------pantalla-------
