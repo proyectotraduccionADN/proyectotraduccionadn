@@ -2,7 +2,7 @@ from tkinter import *
 #------raiz------
 raiz=Tk()
 raiz.title("Traducción de ADN")
-#raiz.geometry("800x600")
+raiz.geometry("800x600")
 raiz.resizable(0,0)
 raiz.config(bg="mint cream")
 #-------pantalla-------
