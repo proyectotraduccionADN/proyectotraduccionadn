@@ -7,7 +7,9 @@ raiz.resizable(0,0)
 raiz.config(bg="mint cream")
 
 
-
+#----Titulo-----
+etiq = Label(raiz, text=" Acido Desoxirribonucleico",bg="beige")
+etiq.grid(row=0,column=2)
 
 #-------pantalla-------
 pantallauno=Frame(raiz)
@@ -16,8 +18,7 @@ pantallauno.config(bd=10)
 pantallauno.grid(row=3, column=2,pady=5, rowspan=2)
 
 #_____ingreso_____
-etiq = Label(raiz, text=" Acido Desoxirribonucleico",bg="beige")
-etiq.grid(row=0,column=2)
+
 ingresotexto=Text(raiz, width=50, height=10)
 ingresotexto.grid(row=1,column=2,pady=5, rowspan=2)
 #_____codigo boton____
