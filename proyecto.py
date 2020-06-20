@@ -1,5 +1,11 @@
-#dna=open("unacadena.txt","r")
-#dna=dna.read()
+import re
+f=open("AC005021.txt","r", encoding="utf-8", errors="ignore")
+t=f.read()
+t=re.sub('[1()234567890/\.,;*><_,.!?¿#:¡()@]',' ', t)
+t=t.lower()
+lista =t.split()
+f.close()
+
 
 dna= input ('escriba aqui la cadena de ADN')
 dic_aminos={'GGA':'Gly','GGG':'Gly','GGU':'Gly','GGC':'Gly','GAG':'Glu','GAA':'Glu','GAC':'Asp','GAU':'Asp','GUG':'Val','GUA':'Val','GUU':'Val','GUC':'Val','GCG':'Ala','GCA':'Ala','GCU':'Ala','GCC':'Ala',
