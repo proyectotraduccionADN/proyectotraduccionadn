@@ -5,6 +5,8 @@ t=re.sub('[1()234567890/\.,;*><_,.!?¿#:¡()@]',' ', t)
 t=t.lower()
 lista =t.split()
 f.close()
+fn=open("edit-AC005021.txt",'w')
+fn.write(t)
 
 
 dna= input ('escriba aqui la cadena de ADN')
