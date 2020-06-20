@@ -26,6 +26,23 @@ def RNA (cadena):
             rna=cadena.replace("T","U")
     return rna
    
+def contar(cadena):
+    a=0
+    g=0
+    t=0
+    c=0
+    for i in cadena:
+        if i =="A":
+            a+=1
+        if i=="T":
+            t+=1
+        if i=="C":
+            c+=1
+        if i=="G":
+            g+=1
+            
+    d=print("A =" ,a,"C=",c,"G=",g,"T=",t)
+    return d
 
 def INVERSO(cadena):
     adn=""
