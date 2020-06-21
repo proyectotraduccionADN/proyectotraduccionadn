@@ -3,11 +3,11 @@ import re
 def lector(archivo):
     f=open("AC005021.txt","r", encoding="utf-8", errors="ignore")
     t=f.read()
+    f.close()
     t=re.sub('[1()234567890/\.,;*><_,.!?¿#:¡()@]',' ', t)
     t=t.upper()
     t=t.replace("\n", "")
-    t=t.replace("\r", "")
-    f.close()
+    t=t.replace(" ", "")
     return t
 
 cadena=lector("AC005021.txt")
