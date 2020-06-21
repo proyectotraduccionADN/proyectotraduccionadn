@@ -30,7 +30,7 @@ def RNA (cadena):
             rna=cadena.replace("T","U")
     return rna
    
-def contar(cadena):
+def Nucleotidos(cadena):
     a=0
     g=0
     t=0
