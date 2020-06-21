@@ -50,7 +50,7 @@ def Nucleotidos(cadena):
 
 def INVERSO(cadena):
     adn=""
-    for i in cadena:
+    for i in reversed(cadena):
         if i =="A":
             adn=adn+"T"
         if i=="T":
