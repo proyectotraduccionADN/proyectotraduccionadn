@@ -16,7 +16,7 @@ Los nucleótidos son cada una de las unidades que forman los ácidos nucleicos, 
 Los nucleótidos están formados por una base nitrogenada, una pentosa (azúcar cíclico de 5 átomos de carbono) y un grupo fosfato, unidos por enlaces covalentes (fuertes).
 Las bases nitrogenadas son purinas (adenina (A) y guanina (G)) y pirimidinas (citosina (C) Timidina (T) (en el caso del DNA) o Uracilo (U) (en el caso del RNA)). En el ácido desoxiribonucléico (DNA) la pentosa es la desoxiribosa, mientras que en el ácido ribonucléico (RNA) es la ribosa.
 
-La información genética está contenida en un código formado por los cuatro nucleótidos que forman codones (conjuntos de tres bases).Los diferentes codones determinan un determinado aminoácido de la proteína en formación 
+El código genético es el conjunto de reglas que define cómo se traduce una secuencia de nucleótidos en el ARNm a una secuencia de aminoácidos en una proteína. La información genética está contenida en un código formado por los cuatro nucleótidos que forman codones (conjuntos de tres bases).Los diferentes codones determinan un determinado aminoácido de la proteína en formación 
 
 REFERENCIAS
 http://ghr.nlm.nih.gov/handbook/howgeneswork/makingprotein
