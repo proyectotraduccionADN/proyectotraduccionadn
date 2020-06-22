@@ -15,7 +15,7 @@ etiq.grid(row=0,column=2)
 pantallauno=Frame(raiz)
 pantallauno.config(bg="gold",width="500",height="300")
 pantallauno.config(bd=10)
-pantallauno.grid(row=3, column=2,pady=5, rowspan=2)
+pantallauno.grid(row=4, column=2,pady=5, rowspan=2)
 
 #_____ingreso_____
 
