@@ -10,7 +10,8 @@ def lector(archivo):
     t=t.replace(" ", "")
     return t
 
-cadena=lector(input ('archivo'))
+archivo=input()
+cadena=lector(archivo)
 
 
 dna= input ('escriba aqui la cadena de ADN')
