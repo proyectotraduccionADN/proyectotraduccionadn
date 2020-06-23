@@ -11,6 +11,9 @@ raiz.config(bg="mint cream")
 etiq = Label(raiz, text=" DOGMA CENTRAL GENÉTICO",bg="beige",font=("Arial Bold", 20))
 etiq.grid(row=0,column=2)
 
+#imagen
+imagen=PhotoImage(file="imag013.png")
+fondo=Label(raiz,image=imagen).place(x=00,y=50)
 #-------pantalla-------
 pantallauno=Frame(raiz)
 pantallauno.config(bg="gold",width="500",height="300")
