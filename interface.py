@@ -79,6 +79,9 @@ f.config(bg="pale turquoise")
 g=Radiobutton(raiz,text="Proteinas",variable=opcionder, value=4)
 g.grid(row=5, column=3)
 g.config(bg="pale turquoise")
+h=Radiobutton(raiz,text="ProteinasSimple",variable=opcionder, value=5)
+h.grid(row=6, column=3)
+h.config(bg="pale turquoise")
 #___________-codigo de traduccion-_______________
 
 dic_aminos={'GGG':'Gly','GGA':'Gly','GGU':'Gly','GGC':'Gly','GAG':'Glu','GAA':'Glu','GAU':'Asp','GAC':'Asp','GUG':'Val','GUA':'Val','GUU':'Val','GUC':'Val','GCG':'Ala','GCA':'Ala','GCU':'Ala','GCC':'Ala',
@@ -101,6 +104,8 @@ def sort():
     elif izquierda==1 and derecha==4:
         dna=RNA(dna)
         dna=Proteinas(dna)
+    elif izquierda==1 and derecha==5:
+        dna=Traductor(dna)    
     elif izquierda==2 and derecha==1:
         dna=INVERSO(dna)
     elif izquierda==2 and derecha==3:
@@ -108,12 +113,18 @@ def sort():
     elif izquierda==2 and derecha==4:
         dna=Transcripcion(dna)
         dna=Proteinas(dna)
+    elif izquierda==2 and derecha==5:
+        dna=INVERSO(dna)
+        dna=Traductor(dna)
     elif izquierda==3 and derecha==1:
         dna=invRNA(dna)
     elif izquierda==3 and derecha==2:
         dna=invTranscripcion(dna)
     elif izquierda==3 and derecha==4:
         dna=Proteinas(dna)
+    elif izquierda==3 and derecha==5:
+        dna=invRNA(dna)
+        dna=Traductor(dna)        
     else:
         dna=dna
     return dna
@@ -186,6 +197,29 @@ def Proteinas(cadena):
                 proteina=proteina+an
                 break
             proteina=proteina+an+", "
+    return proteina
+
+def Traductor(seq):
+    proteina = ""
+    table = {'ATA':'I', 'ATC':'I', 'ATT':'I', 'ATG':' M', 'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACT':'T',
+    'AAC':'N', 'AAT':'N', 'AAA':'K', 'AAG':'K','AGC':'S', 'AGT':'S', 'AGA':'R', 'AGG':'R',
+    'CTA':'L', 'CTC':'L', 'CTG':'L', 'CTT':'L','CCA':'P', 'CCC':'P', 'CCG':'P', 'CCT':'P',
+    'CAC':'H', 'CAT':'H', 'CAA':'Q', 'CAG':'Q', 'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGT':'R',
+    'GTA':'V', 'GTC':'V', 'GTG':'V', 'GTT':'V','GCA':'A', 'GCC':'A', 'GCG':'A', 'GCT':'A',
+    'GAC':'D', 'GAT':'D', 'GAA':'E', 'GAG':'E', 'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGT':'G',
+    'TCA':'S', 'TCC':'S', 'TCG':'S', 'TCT':'S','TTC':'F', 'TTT':'F', 'TTA':'L', 'TTG':'L',
+    'TAC':'Y', 'TAT':'Y', 'TAA':'_', 'TAG':'_', 'TGC':'C', 'TGT':'C', 'TGA':'_', 'TGG':'W',}
+      
+    if len(seq)%3 == 0:
+        for i in range(0, len(seq), 3):
+            codon = seq[i : i+3]
+            proteina += table[codon]
+    else:
+        print("cadena incompleta se elimina", len(seq)%3,"nucleotidos")
+        for i in range(0, len(seq)-len(seq)%3, 3):
+            codon = seq[i : i+3]
+            proteina += table[codon]
+        
     return proteina
 
 #____________________________________________________________________
