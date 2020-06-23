@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 #------raiz------
 raiz=Tk()
 raiz.title("Traducción de ADN")
@@ -10,7 +11,6 @@ raiz.config(bg="mint cream")
 #----Titulo-----
 etiq = Label(raiz, text=" DOGMA CENTRAL GENÉTICO",bg="beige",font=("Arial Bold", 20))
 etiq.grid(row=0,column=2)
-
 #imagen
 imagen=PhotoImage(file="imag013.png")
 fondo=Label(raiz,image=imagen).place(x=00,y=50)
@@ -36,6 +36,7 @@ def codigoBoton():
     pantalla.delete(1.0,END)
     pantalla.insert(END, dna)
     pantalla.config(state=DISABLED)
+    messagebox.showinfo("Hecho","La cadena se tradujo exitosamente")
 
 
 #______botones seleccion izquierda_______
