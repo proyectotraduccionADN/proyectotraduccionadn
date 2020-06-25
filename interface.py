@@ -135,16 +135,18 @@ def sort():
 
  
 def RNA (cadena):
+    rna=""
     for i in cadena:
         if i=="T":
             rna=cadena.replace("T","U")
     return rna
 
 def invRNA (cadena):
+    adn=""
     for i in cadena:
         if i=="U":
             adn=cadena.replace("U","T")
-        return adn
+    return adn
    
 def INVERSO(cadena):
     adn=""
