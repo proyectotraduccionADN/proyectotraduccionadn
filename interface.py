@@ -11,14 +11,14 @@ raiz.config(bg="mint cream")
 #----Titulo-----
 etiq = Label(raiz, text=" DOGMA CENTRAL GENÉTICO",bg="beige",font=("Arial Bold", 20))
 etiq.grid(row=0,column=2)
-#imagen
+#______imagen
 imagen=PhotoImage(file="imag013.png")
 fondo=Label(raiz,image=imagen).place(x=00,y=50)
 #-------pantalla-------
 pantallauno=Frame(raiz)
 pantallauno.config(bg="gold",width="500",height="300")
 pantallauno.config(bd=10)
-pantallauno.grid(row=4, column=2,pady=5, rowspan=2)
+pantallauno.grid(row=4, column=2,pady=5, rowspan=3)
 
 pantalla=Text(pantallauno, width=50, height=10)
 pantalla.config(state=DISABLED)
@@ -28,7 +28,7 @@ pantalla.pack()
 #_____ingreso_____
 
 ingresotexto=Text(raiz, width=50, height=10)
-ingresotexto.grid(row=1,column=2,pady=5, rowspan=2)
+ingresotexto.grid(row=1,column=2,pady=5, rowspan=3)
 #_____codigo boton____
 def codigoBoton():
     dna=sort()
@@ -43,11 +43,13 @@ def codigoBoton():
 entradalabel=Label(raiz, text="Cadena de entrada",font=(18),bg="mint cream")
 entradalabel.grid(row=1,column=1)
 opcionizq=IntVar()
+opinicio=IntVar()
 
 def valorizq():
     izquierda=opcionizq.get()
     return izquierda
-    
+def valinicio():
+    return opinicio.get()
 a=Radiobutton(raiz,text="DNA sense",variable=opcionizq, value=1)
 a.grid(row=2, column=1)
 a.config(bg="pale turquoise")
@@ -57,8 +59,11 @@ b.config(bg="pale turquoise")
 c=Radiobutton(raiz,text="RNA",variable=opcionizq, value=3)
 c.grid(row=4, column=1)
 c.config(bg="pale turquoise")
+inicio=Checkbutton(raiz, text="Codón de inicio",variable=opinicio, onvalue=1, offvalue=0)
+inicio.grid(row=5, column=1)
+inicio.config(bg="pale turquoise")
 boton=Button(raiz, text="Traducir", command= codigoBoton)
-boton.grid(row=5, column=1)
+boton.grid(row=6, column=1)
 
 
 #_______ botones seleccion derecha________
@@ -69,7 +74,6 @@ opcionder=IntVar()
 
 def valorder():
     derecha=opcionder.get()
-    print(derecha)
     return derecha
 d=Radiobutton(raiz,text="DNA sense",variable=opcionder, value=1)
 d.grid(row=2, column=3)
@@ -101,34 +105,35 @@ def sort():
                 dna=dna.replace(i,"")
     izquierda=valorizq()
     derecha=valorder()
+    inicia=valinicio()
     if izquierda==1 and derecha==2:
         dna=INVERSO(dna)
     elif izquierda==1 and derecha==3:
         dna=RNA(dna)
     elif izquierda==1 and derecha==4:
         dna=RNA(dna)
-        dna=Proteinas(dna)
+        dna=Proteinas(dna,inicia)
     elif izquierda==1 and derecha==5:
-        dna=Traductor(dna)    
+        dna=Traductor(dna, inicia)    
     elif izquierda==2 and derecha==1:
         dna=INVERSO(dna)
     elif izquierda==2 and derecha==3:
         dna=Transcripcion(dna)
     elif izquierda==2 and derecha==4:
         dna=Transcripcion(dna)
-        dna=Proteinas(dna)
+        dna=Proteinas(dna,inicia)
     elif izquierda==2 and derecha==5:
         dna=INVERSO(dna)
-        dna=Traductor(dna)
+        dna=Traductor(dna,inicia)
     elif izquierda==3 and derecha==1:
         dna=invRNA(dna)
     elif izquierda==3 and derecha==2:
         dna=invTranscripcion(dna)
     elif izquierda==3 and derecha==4:
-        dna=Proteinas(dna)
+        dna=Proteinas(dna,inicia)
     elif izquierda==3 and derecha==5:
         dna=invRNA(dna)
-        dna=Traductor(dna)        
+        dna=Traductor(dna,inicia)        
     else:
         dna=dna
     return dna
@@ -188,44 +193,94 @@ def invTranscripcion(cadena):
             adn=adn+"G"
     return adn
     
-def Proteinas(cadena):
+def Proteinas(cadena,con=0):
     count=0
     amino=""
     proteina=""
-    for i in cadena:
-        amino=amino+i
-        count=count+1
-        if count==3:
-            an=dic_aminos[amino]
-            count=0
-            amino=""
-            if an =="STOP":
-                proteina=proteina+an
-                break
-            proteina=proteina+an+", "
+    if con==0:
+        for i in cadena:
+            amino=amino+i
+            count=count+1
+            if count==3:
+                an=dic_aminos[amino]
+                count=0
+                amino=""
+                proteina=proteina+an+", "
+    if con==1:
+        cuenta=0
+        a=0
+        for i in cadena:
+            amino=amino+i
+            count=count+1
+            cuenta=cuenta+1
+            if count==3:
+                if a==1:
+                    an=dic_aminos[amino]
+                    if an=="STOP":
+                        proteina=proteina+an+"\n"
+                        a=0
+                        amino=""
+                        count=0
+                    else:
+                        proteina=proteina+an+", "
+                        count=0
+                        amino=""
+                if amino=="AUG":
+                    a=1
+                    amino=""
+                    count=0
+                else:
+                    amino=""
+                    count=0
     return proteina
 
-def Traductor(seq):
-    proteina = ""
-    table = {'ATA':'I', 'ATC':'I', 'ATT':'I', 'ATG':' M', 'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACT':'T',
+def Traductor(cadena,con=0):
+    table = {'ATA':'I', 'ATC':'I', 'ATT':'I', 'ATG':'M', 'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACT':'T',
     'AAC':'N', 'AAT':'N', 'AAA':'K', 'AAG':'K','AGC':'S', 'AGT':'S', 'AGA':'R', 'AGG':'R',
     'CTA':'L', 'CTC':'L', 'CTG':'L', 'CTT':'L','CCA':'P', 'CCC':'P', 'CCG':'P', 'CCT':'P',
     'CAC':'H', 'CAT':'H', 'CAA':'Q', 'CAG':'Q', 'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGT':'R',
     'GTA':'V', 'GTC':'V', 'GTG':'V', 'GTT':'V','GCA':'A', 'GCC':'A', 'GCG':'A', 'GCT':'A',
     'GAC':'D', 'GAT':'D', 'GAA':'E', 'GAG':'E', 'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGT':'G',
     'TCA':'S', 'TCC':'S', 'TCG':'S', 'TCT':'S','TTC':'F', 'TTT':'F', 'TTA':'L', 'TTG':'L',
-    'TAC':'Y', 'TAT':'Y', 'TAA':'_', 'TAG':'_', 'TGC':'C', 'TGT':'C', 'TGA':'_', 'TGG':'W',}
-      
-    if len(seq)%3 == 0:
-        for i in range(0, len(seq), 3):
-            codon = seq[i : i+3]
-            proteina += table[codon]
-    else:
-        print("cadena incompleta se elimina", len(seq)%3,"nucleotidos")
-        for i in range(0, len(seq)-len(seq)%3, 3):
-            codon = seq[i : i+3]
-            proteina += table[codon]
-        
+    'TAC':'Y', 'TAT':'Y', 'TAA':'_', 'TAG':'_', 'TGC':'C', 'TGT':'C', 'TGA':'_', 'TGG':'W'}
+    count=0
+    amino=""
+    proteina=""
+    if con==0:
+        for i in cadena:
+            amino=amino+i
+            count=count+1
+            if count==3:
+                an=table[amino]
+                count=0
+                amino=""
+                proteina=proteina+an
+    if con==1:
+        cuenta=0
+        a=0
+        for i in cadena:
+            amino=amino+i
+            count=count+1
+            cuenta=cuenta+1
+            if count==3:
+                if a==1:
+                    an=table[amino]
+                    if an=="_":
+                        proteina=proteina+an+"\n"
+                        a=0
+                        amino=""
+                        count=0
+                    else:
+                        proteina=proteina+an
+                        count=0
+                        amino=""
+                if amino=="ATG":
+                    a=1
+                    amino=""
+                    count=0
+                else:
+                    amino=""
+                    count=0
     return proteina
 
 #____________________________________________________________________
