@@ -49,7 +49,7 @@ menubar=Menu(raiz)
 raiz.config(menu=menubar)  
 
 filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="Nuevo", ommand=Nuevo)
+filemenu.add_command(label="Nuevo", command=Nuevo)
 filemenu.add_command(label="Abrir", command=Abrir)
 filemenu.add_command(label="Guardar" , command=Guardar)
 filemenu.add_command(label="Cerrar")
