@@ -9,14 +9,45 @@ raiz.title("Traducción de ADN")
 #raiz.geometry("800x600")
 raiz.resizable(0,0)
 raiz.config(bg="mint cream")
-#-------Menu------
+
+#------Lector de archivos
+
+def lector(archivo):
+    f=open(archivo,"r", encoding="utf-8", errors="ignore")
+    t=f.read()
+    f.close()
+    t=re.sub('[1()234567890/\.,;*><_,.!?¿#:¡()@]',' ', t)
+    t=t.upper()
+    t=t.replace("\n", "")
+    t=t.replace(" ", "")
+    return t
+
+
+def Guardar():
+    nombrearch=fd.asksaveasfilename(initialdir = "/",title = "Guardar como",filetypes = (("txt files","*.txt"),("todos los archivos","*.*")))
+    if nombrearch!='':
+        archi1=open(nombrearch, "w", encoding="utf-8")
+        archi1.write(pantalla.get("1.0", END))
+        archi1.close()
+        mb.showinfo("Información", "Los datos fueron guardados en el archivo.")
+
+def Abrir():
+    nombrearch=fd.askopenfilename(initialdir = "/",title = "Seleccione archivo",filetypes = (("txt files","*.txt"),("todos los archivos","*.*")))
+    if nombrearch!='':
+        contenido=lector(nombrearch)
+        ingresotexto.delete("1.0", END) 
+        ingresotexto.insert("1.0", contenido)
+
+#------Menu------
+    
+        
 menubar=Menu(raiz)
 raiz.config(menu=menubar)  # Lo asignamos a la base
 
 filemenu = Menu(menubar, tearoff=0)
 filemenu.add_command(label="Nuevo")
 filemenu.add_command(label="Abrir", command=Abrir)
-filemenu.add_command(label="Guardar")
+filemenu.add_command(label="Guardar" , command=Guardar)
 filemenu.add_command(label="Cerrar")
 filemenu.add_separator()
 filemenu.add_command(label="Salir", command=raiz.quit)
@@ -125,6 +156,7 @@ dic_aminos={'GGG':'Gly','GGA':'Gly','GGU':'Gly','GGC':'Gly','GAG':'Glu','GAA':'G
 'CGG':'Arg','CGA':'Arg','CGU':'Arg','CGC':'Arg','CAG':'Gln','CAA':'Gln','CAU':'His','CAC':'His','CUG':'Leu','CUA':'Leu','CUU':'Leu','CUC':'Leu','CCG':'Pro','CCA':'Pro','CCU':'Pro','CCC':'Pro'}
 
 def sort():
+    
     dna=ingresotexto.get("1.0","end-1c")
     dna=dna.upper()
     for i in dna:
@@ -309,20 +341,7 @@ def Traductor(cadena,con=0):
                     amino=""
                     count=0
     return proteina
-def lector(archivo):
-    f=open(archivo,"r", encoding="utf-8", errors="ignore")
-    t=f.read()
-    f.close()
-    t=re.sub('[1()234567890/\.,;*><_,.!?¿#:¡()@]',' ', t)
-    t=t.upper()
-    t=t.replace("\n", "")
-    t=t.replace(" ", "")
-    return t
 
-def Abrir():
-    nombrearch=fd.askopenfilename(initialdir = "/",title = "Seleccione archivo",filetypes = (("txt files","*.txt"),("todos los archivos","*.*")))
-    if nombrearch!='':
-        cadena= lector(nombrearch)
-    return cadena
+
 #____________________________________________________________________
 raiz.mainloop()
