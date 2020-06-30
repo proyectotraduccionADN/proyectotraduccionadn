@@ -1,5 +1,8 @@
 from tkinter import *
-from tkinter import messagebox
+from tkinter import scrolledtext as st
+import sys
+from tkinter import filedialog as fd
+from tkinter import messagebox as mb
 #------raiz------
 raiz=Tk()
 raiz.title("Traducción de ADN")
@@ -12,7 +15,7 @@ raiz.config(menu=menubar)  # Lo asignamos a la base
 
 filemenu = Menu(menubar, tearoff=0)
 filemenu.add_command(label="Nuevo")
-filemenu.add_command(label="Abrir")
+filemenu.add_command(label="Abrir", command=Abrir)
 filemenu.add_command(label="Guardar")
 filemenu.add_command(label="Cerrar")
 filemenu.add_separator()
@@ -60,7 +63,7 @@ def codigoBoton():
     pantalla.delete(1.0,END)
     pantalla.insert(END, dna)
     pantalla.config(state=DISABLED)
-    messagebox.showinfo("Hecho","La cadena se tradujo exitosamente")
+    mb.showinfo("Hecho","La cadena se tradujo exitosamente")
 
 
 #______botones seleccion izquierda_______
@@ -306,6 +309,20 @@ def Traductor(cadena,con=0):
                     amino=""
                     count=0
     return proteina
+def lector(archivo):
+    f=open(archivo,"r", encoding="utf-8", errors="ignore")
+    t=f.read()
+    f.close()
+    t=re.sub('[1()234567890/\.,;*><_,.!?¿#:¡()@]',' ', t)
+    t=t.upper()
+    t=t.replace("\n", "")
+    t=t.replace(" ", "")
+    return t
 
+def Abrir():
+    nombrearch=fd.askopenfilename(initialdir = "/",title = "Seleccione archivo",filetypes = (("txt files","*.txt"),("todos los archivos","*.*")))
+    if nombrearch!='':
+        cadena= lector(nombrearch)
+    return cadena
 #____________________________________________________________________
 raiz.mainloop()
