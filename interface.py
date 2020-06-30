@@ -6,7 +6,31 @@ raiz.title("Traducción de ADN")
 #raiz.geometry("800x600")
 raiz.resizable(0,0)
 raiz.config(bg="mint cream")
+#-------Menu------
+menubar=Menu(raiz)
+raiz.config(menu=menubar)  # Lo asignamos a la base
 
+filemenu = Menu(menubar, tearoff=0)
+filemenu.add_command(label="Nuevo")
+filemenu.add_command(label="Abrir")
+filemenu.add_command(label="Guardar")
+filemenu.add_command(label="Cerrar")
+filemenu.add_separator()
+filemenu.add_command(label="Salir", command=raiz.quit)
+
+editmenu = Menu(menubar, tearoff=0)
+editmenu.add_command(label="Cortar")
+editmenu.add_command(label="Copiar")
+editmenu.add_command(label="Pegar")
+
+helpmenu = Menu(menubar, tearoff=0)
+helpmenu.add_command(label="Ayuda")
+helpmenu.add_separator()
+helpmenu.add_command(label="Acerca de...")
+
+menubar.add_cascade(label="Archivo", menu=filemenu)
+menubar.add_cascade(label="Editar", menu=editmenu)
+menubar.add_cascade(label="Ayuda", menu=helpmenu)
 
 #----Titulo-----
 etiq = Label(raiz, text=" DOGMA CENTRAL GENÉTICO",bg="beige",font=("Arial Bold", 20))
