@@ -37,15 +37,19 @@ def Abrir():
         ingresotexto.delete("1.0", END) 
         ingresotexto.insert("1.0", contenido)
         mb.showinfo("Información", "Los datos fueron cargados.")
+        
+def Nuevo():
+    ingresotexto.delete("1.0", END)
+    pantalla.get("1.0", END) 
 
 #------Menu------
     
         
 menubar=Menu(raiz)
-raiz.config(menu=menubar)  # Lo asignamos a la base
+raiz.config(menu=menubar)  
 
 filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="Nuevo")
+filemenu.add_command(label="Nuevo", ommand=Nuevo)
 filemenu.add_command(label="Abrir", command=Abrir)
 filemenu.add_command(label="Guardar" , command=Guardar)
 filemenu.add_command(label="Cerrar")
@@ -53,9 +57,7 @@ filemenu.add_separator()
 filemenu.add_command(label="Salir", command=raiz.quit)
 
 editmenu = Menu(menubar, tearoff=0)
-editmenu.add_command(label="Cortar")
-editmenu.add_command(label="Copiar")
-editmenu.add_command(label="Pegar")
+
 
 helpmenu = Menu(menubar, tearoff=0)
 helpmenu.add_command(label="Ayuda")
