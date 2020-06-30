@@ -1,6 +1,5 @@
 from tkinter import *
 from tkinter import scrolledtext as st
-import sys
 from tkinter import filedialog as fd
 from tkinter import messagebox as mb
 #------raiz------
@@ -37,6 +36,7 @@ def Abrir():
         contenido=lector(nombrearch)
         ingresotexto.delete("1.0", END) 
         ingresotexto.insert("1.0", contenido)
+        mb.showinfo("Información", "Los datos fueron cargados.")
 
 #------Menu------
     
