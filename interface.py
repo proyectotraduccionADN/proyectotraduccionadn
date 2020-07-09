@@ -5,7 +5,6 @@ from tkinter import messagebox as mb
 #------raiz------
 raiz=Tk()
 raiz.title("Traducción de ADN")
-#raiz.geometry("800x600")
 raiz.resizable(0,0)
 raiz.config(bg="mint cream")
 
@@ -41,6 +40,14 @@ def Abrir():
 def Nuevo():
     ingresotexto.delete("1.0", END)
     pantalla.get("1.0", END) 
+def helps():
+    mb.showinfo("¿Cómo usar el traductor?", "El dogma central de la biología dice que la información viaja del ADN al ARN a las proteinas, "
+                "este programa permite traducir cadenas de ADN o ARN. \n Para usar el programa simplemente escoja el tipo de cadena que va "
+                "a ingresar, el tipo de cadena al que desea convertir y decida si su traducción toma en cuenta el codón de inicio del ADN, "
+                "a continuación ingrese su cadena en el recuadro central superior, si esta se encuentra en un archivo de texto .txt puede "
+                "abrirla directamente en la opción archivo y abrir, después, haga click en el botón traducir y aparecerá un recuadro confirmando "
+                "que la cadena se tradujo exitosamente, si así lo desea puede descargar la cadena traducida en un archivo de texto solo debe "
+                "hacer click en la opción archivo y guardar.")
 
 #------Menu------
     
@@ -52,28 +59,28 @@ filemenu = Menu(menubar, tearoff=0)
 filemenu.add_command(label="Nuevo", command=Nuevo)
 filemenu.add_command(label="Abrir", command=Abrir)
 filemenu.add_command(label="Guardar" , command=Guardar)
-filemenu.add_command(label="Cerrar")
+#filemenu.add_command(label="Cerrar")
 filemenu.add_separator()
-filemenu.add_command(label="Salir", command=raiz.quit)
+filemenu.add_command(label="Salir", command=raiz.destroy)
 
 editmenu = Menu(menubar, tearoff=0)
 
 
 helpmenu = Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Ayuda")
+helpmenu.add_command(label="Ayuda", command=helps)
 helpmenu.add_separator()
 helpmenu.add_command(label="Acerca de...")
 
 menubar.add_cascade(label="Archivo", menu=filemenu)
-menubar.add_cascade(label="Editar", menu=editmenu)
 menubar.add_cascade(label="Ayuda", menu=helpmenu)
+#______imagen
+imagen=PhotoImage(file="imag013.png")
+fondo=Label(raiz,image=imagen).place(x=00,y=00)
 
 #----Titulo-----
 etiq = Label(raiz, text=" DOGMA CENTRAL GENÉTICO",bg="beige",font=("Arial Bold", 20))
 etiq.grid(row=0,column=2)
-#______imagen
-imagen=PhotoImage(file="imag013.png")
-fondo=Label(raiz,image=imagen).place(x=00,y=50)
+
 #-------pantalla-------
 pantallauno=Frame(raiz)
 pantallauno.config(bg="gold",width="500",height="300")
