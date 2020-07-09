@@ -40,6 +40,17 @@ def Abrir():
 def Nuevo():
     ingresotexto.delete("1.0", END)
     pantalla.get("1.0", END) 
+    
+def acerca():
+    mb.showinfo("ANALIZADOR DEL DOGMA GENETICO", "Es un programa de codigo abierto  y gratuito creado por estudiantes de Fisica de la Universidad de Colombia. \n"
+                "\n"
+                "El codigo esta escrito en Python 3.7 y la intefaz en Tkinter, con el objetivo de facilitar el analisis de los codigos de la naruraleza para el avance de la Ciencia  \n"
+                "\n"
+                "Contactenos  \n    "
+                " @unal.edu.co\n"
+                "bspenad@unal.edu.co"
+                "\n \n"
+                "2020")
 def helps():
     mb.showinfo("¿Cómo usar el traductor?", "El dogma central de la biología dice que la información viaja del ADN al ARN a las proteinas, "
                 "este programa permite traducir cadenas de ADN o ARN. \n Para usar el programa simplemente escoja el tipo de cadena que va "
@@ -69,7 +80,7 @@ editmenu = Menu(menubar, tearoff=0)
 helpmenu = Menu(menubar, tearoff=0)
 helpmenu.add_command(label="Ayuda", command=helps)
 helpmenu.add_separator()
-helpmenu.add_command(label="Acerca de...")
+helpmenu.add_command(label="Acerca de...", command=acerca)
 
 menubar.add_cascade(label="Archivo", menu=filemenu)
 menubar.add_cascade(label="Ayuda", menu=helpmenu)
