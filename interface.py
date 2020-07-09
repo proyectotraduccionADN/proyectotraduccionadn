@@ -47,7 +47,7 @@ def acerca():
                 "El codigo esta escrito en Python 3.7 y la intefaz en Tkinter, con el objetivo de facilitar el analisis de los codigos de la naruraleza para el avance de la Ciencia  \n"
                 "\n"
                 "Contactenos  \n    "
-                " @unal.edu.co\n"
+                "vahoyosm@unal.edu.co\n"
                 "bspenad@unal.edu.co"
                 "\n \n"
                 "2020")
@@ -162,10 +162,10 @@ e.config(bg="pale turquoise")
 f=Radiobutton(raiz,text="RNA",variable=opcionder, value=3)
 f.grid(row=4, column=3)
 f.config(bg="pale turquoise")
-g=Radiobutton(raiz,text="Proteinas",variable=opcionder, value=4)
+g=Radiobutton(raiz,text="Aminoacidos",variable=opcionder, value=4)
 g.grid(row=5, column=3)
 g.config(bg="pale turquoise")
-h=Radiobutton(raiz,text="ProteinasSimple",variable=opcionder, value=5)
+h=Radiobutton(raiz,text="Proteina",variable=opcionder, value=5)
 h.grid(row=6, column=3)
 h.config(bg="pale turquoise")
 #___________-codigo de traduccion-_______________
