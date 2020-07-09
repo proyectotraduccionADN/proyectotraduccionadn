@@ -42,9 +42,9 @@ def Nuevo():
     pantalla.get("1.0", END) 
     
 def acerca():
-    mb.showinfo("ANALIZADOR DEL DOGMA GENETICO", "Es un programa de codigo abierto  y gratuito creado por estudiantes de Fisica de la Universidad de Colombia. \n"
+    mb.showinfo("ANALIZADOR DEL DOGMA GENÉTICO", "Es un programa de código abierto  y gratuito creado por estudiantes de Física de la Universidad Nacional de Colombia. \n"
                 "\n"
-                "El codigo esta escrito en Python 3.7 y la intefaz en Tkinter, con el objetivo de facilitar el analisis de los codigos de la naruraleza para el avance de la Ciencia  \n"
+                "El código esta escrito en Python 3.7 y la interfaz en Tkinter, con el objetivo de facilitar el análisis de los códigos de la naturaleza para el avance de la ciencia  \n"
                 "\n"
                 "Contactenos  \n    "
                 "vahoyosm@unal.edu.co\n"
